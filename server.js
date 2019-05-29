@@ -2,10 +2,12 @@
 
 const express = require('express');
 const errorHandler = require('./middleware/errorHandler');
+const notFound = require('./middleware/notFound');
 
 const app = express();
 
 const PORT = process.env.PORT || 8080;
+
 
 app.get('/a', (req,res) => {
   res.status(200).send('Route A');
@@ -23,13 +25,16 @@ app.get('/d', (req,res) => {
   res.status(200).send('Route D');
 });
 
+
+app.use(errorHandler);
 app.get('/test/error', (req, res) => {
   throw 'Test error!';
 });
 
-app.listen(PORT, () => console.log(`Listening on ${PORT}`));
+app.get('*', notFound, (req, res) => {
+  res.status(404).send('Catch-all route');
+});
 
-app.use(errorHandler);
 
 module.exports = {
   server: app,
