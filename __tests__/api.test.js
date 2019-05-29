@@ -11,4 +11,11 @@ describe('Web server', () => {
       .expect(200)
       .expect({ reqTime: 'Added correctly' });
   });
+
+  it('should log the method, path, and requestTime', () => {
+    return mockRequest
+      .get('/b')
+      .expect(200)
+      .expect({ method: 'GET', path: '/b', reqTime: 'Added correctly'});
+  });
 });
