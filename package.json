@@ -1,0 +1,27 @@
+{
+  "name": "middleware",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "lint": "eslint **/*.js",
+    "test": "jest --verbose --coverage",
+    "test-watch": "jest --watchAll --verbose --coverage",
+    "jsdoc": "jsdoc -c ./docs/config/jsdoc.config.json",
+    "json-server": "json-server"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "eslint": "^5.16.0",
+    "faker": "^4.1.0",
+    "jest": "^24.8.0",
+    "jsdoc": "^3.6.2",
+    "json-server": "^0.15.0"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "keywords": []
+}
