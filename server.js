@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express');
+const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
 
@@ -24,3 +25,4 @@ app.get('/d', (req,res) => {
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
 
+app.use(errorHandler);
