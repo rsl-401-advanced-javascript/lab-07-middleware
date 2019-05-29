@@ -1,6 +1,8 @@
 'use strict';
 
-const { server } = require('../server.js');
+const {
+  server
+} = require('../server.js');
 const supertest = require('supertest');
 const mockRequest = supertest(server);
 
@@ -9,13 +11,17 @@ describe('Web server', () => {
     return mockRequest
       .get('/a')
       .expect(200)
-      .expect({ reqTime: 'Added correctly' });
+      .then(result => expect(result.body.reqTime).toBeDefined());
   });
 
   it('should log the method, path, and requestTime', () => {
     return mockRequest
       .get('/b')
       .expect(200)
-      .expect({ method: 'GET', path: '/b', reqTime: 'Added correctly'});
+      .expect({
+        method: 'GET',
+        path: '/b',
+        reqTime: 'Added correctly',
+      });
   });
 });

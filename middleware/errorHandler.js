@@ -1,5 +1,6 @@
 'use strict';
 
 module.exports = function(err, req, res, next) {
-  throw err;
+  console.error(err);
+  next(err);
 };
