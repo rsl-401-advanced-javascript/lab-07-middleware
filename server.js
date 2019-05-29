@@ -6,6 +6,7 @@ const notFound = require('./middleware/notFound');
 const requestTimeMiddle = require('./middleware/requestTime');
 const methodPathTime = require('./middleware/methodPathTime');
 const dRaiseError = require('./middleware/dRaiseError');
+const square = require('./middleware/square');
 
 const app = express();
 
@@ -16,17 +17,17 @@ app.get('/a', (req,res) => {
   res.send({ reqTime: req.requestTime });
 });
 
-app.get('/b', (req,res) => {
-  res.send({ method: 'GET', path: '/b', reqTime: 'Added correctly'});
+// app.use(square);
+app.get('/b', square(2), (req,res) => {
+  res.send({ number: req.number });
 });
 
 app.get('/c', (req,res) => {
-  res.status(200).send('Route C');
+  res.send({ method: 'GET', path: '/b', reqTime: 'Added correctly'});
 });
 
-app.use(dRaiseError);
-app.get('/d', (req,res) => {
-  throw Error;
+app.get('/d', dRaiseError, (err, req, res) => {
+  throw err;
 });
 
 app.use(errorHandler);

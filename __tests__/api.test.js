@@ -14,7 +14,7 @@ describe('Web server', () => {
 
   it('should log the method, path, and requestTime', () => {
     return mockRequest
-      .get('/b')
+      .get('/c')
       .expect(200)
       .expect({
         method: 'GET',
@@ -27,5 +27,11 @@ describe('Web server', () => {
     return mockRequest
       .get('/d')
       .expect(500);
+  });
+
+  it('should square a number on /b', () => {
+    return mockRequest
+      .get('/b')
+      .expect({ number: 4 });
   });
 });
