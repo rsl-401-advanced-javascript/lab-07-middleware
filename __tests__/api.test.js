@@ -1,8 +1,6 @@
 'use strict';
 
-const {
-  server
-} = require('../server.js');
+const { server } = require('../server.js');
 const supertest = require('supertest');
 const mockRequest = supertest(server);
 
@@ -23,5 +21,11 @@ describe('Web server', () => {
         path: '/b',
         reqTime: 'Added correctly',
       });
+  });
+
+  it('should raise an error on /d', () => {
+    return mockRequest
+      .get('/d')
+      .expect(500);
   });
 });
