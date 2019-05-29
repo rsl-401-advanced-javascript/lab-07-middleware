@@ -5,8 +5,8 @@ const errorHandler = require('./middleware/errorHandler');
 const notFound = require('./middleware/notFound');
 const requestTimeMiddle = require('./middleware/requestTime');
 const methodPathTime = require('./middleware/methodPathTime');
-const dRaiseError = require('./middleware/dRaiseError');
 const square = require('./middleware/square');
+const routes = require('./routes');
 
 const app = express();
 
@@ -22,13 +22,7 @@ app.get('/b', square(2), (req,res) => {
   res.send({ number: req.number });
 });
 
-app.get('/c', (req,res) => {
-  res.send({ method: 'GET', path: '/b', reqTime: 'Added correctly'});
-});
-
-app.get('/d', dRaiseError, (err, req, res) => {
-  throw err;
-});
+app.use(routes);
 
 app.use(errorHandler);
 app.get('/test/error', (req, res) => {
