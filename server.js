@@ -26,3 +26,13 @@ app.get('/d', (req,res) => {
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
 
 app.use(errorHandler);
+
+module.exports = {
+  server: app,
+  start: port => {
+    let PORT = process.env.PORT || port || 3000;
+    app.listen(PORT, () => {
+      console.log(`Listening on ${PORT}...`);
+    });
+  }
+};
