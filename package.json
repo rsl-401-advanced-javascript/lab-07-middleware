@@ -6,10 +6,9 @@
   "scripts": {
     "start": "node index.js",
     "lint": "eslint **/*.js",
-    "test": "jest --verbose --coverage",
+    "test": "jest --verbose --coverage --detectOpenHandles",
     "test-watch": "jest --watchAll --verbose --coverage",
-    "jsdoc": "jsdoc -c ./docs/config/jsdoc.config.json",
-    "json-server": "json-server"
+    "jsdoc": "jsdoc -c ./docs/config/jsdoc.config.json"
   },
   "author": "",
   "license": "ISC",
@@ -23,5 +22,8 @@
   "directories": {
     "lib": "lib"
   },
-  "keywords": []
+  "keywords": [],
+  "devDependencies": {
+    "supertest": "^4.0.2"
+  }
 }

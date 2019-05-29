@@ -23,6 +23,10 @@ app.get('/d', (req,res) => {
   res.status(200).send('Route D');
 });
 
+app.get('/test/error', (req, res) => {
+  throw 'Test error!';
+});
+
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
 
 app.use(errorHandler);
@@ -34,5 +38,5 @@ module.exports = {
     app.listen(PORT, () => {
       console.log(`Listening on ${PORT}...`);
     });
-  }
+  },
 };
